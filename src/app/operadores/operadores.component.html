@@ -1,0 +1,78 @@
+<div class="place-holder">
+    <div class="component-header flex-row">
+        <div class="flex-child">
+            <mat-form-field>
+                <mat-icon matSuffix>search</mat-icon>
+                <input matInput placeholder="Pesquisar" [(ngModel)]="queryString">
+            </mat-form-field>
+        </div>
+        <div class="flex-child component-header-title">
+            <h2 class="mat-h2">Operadores</h2>
+        </div>
+        <div class="flex-child"></div>
+    </div>
+
+    <div class="card-container">
+        <div *ngFor="let item of items$ | async | filter: {name:queryString};">
+            <mat-card class="card-body">
+                <div class="card-menu">
+                    <span class="fill-remaining-space"></span>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon class="mat-24">more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item disabled>
+                            <mat-icon class="mat-24">history</mat-icon>
+                            Histórico</button>
+                        <button mat-menu-item (click)="editItem(item)">
+                            <mat-icon class="mat-24">edit</mat-icon>
+                            Editar</button>
+                        <button mat-menu-item (click)="toggleItem(item)" *ngIf="item.client?.isEnabled">
+                            <span *ngIf="item.isEnabled; else ativar">
+                                <mat-icon class="mat-24">block</mat-icon>Desativar</span>
+                            <ng-template #ativar>
+                                <span>
+                                    <mat-icon class="mat-24">check</mat-icon>Ativar</span>
+                            </ng-template>
+                        </button>
+                        <button mat-menu-item (click)="removeItem(item)">
+                            <mat-icon class="mat-24">delete_forever</mat-icon>
+                            Remover</button>
+                    </mat-menu>
+                </div>
+                <mat-card-header class="card-header" [ngClass]="{'disabled': item.isEnabled==false}">
+                    <div mat-card-avatar>
+                        <mat-icon mat-list-icon class="card-icon">account_box</mat-icon>
+                    </div>
+                    <mat-card-title>
+                        <b>{{ item.name }}</b>
+                    </mat-card-title>
+                    <mat-card-subtitle>{{ item.type }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p *ngIf="item.clientId">
+                        <b>Cliente: </b>
+                        <span>{{ item.client?.name }}</span>
+                    </p>
+                    <p>
+                        <b>Email: </b>{{ item.email }}</p>
+                    <p *ngIf="item.readAccess">
+                        <b>Visualização: </b>
+                    </p>
+                    <p *ngIf="item.writeAccess">
+                        <b>Editação: </b>Produtos</p>
+
+                    <small>Último acesso em {{ item.updatedAt | date:'dd/MM/yyy, HH:mm' }}.</small>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <!--
+    <div class="status-container" *ngIf="status.show">
+        <mat-spinner *ngIf="status.spinner"></mat-spinner>
+        <h2 class="mat-h2"></h2>
+    </div>
+-->
+    <button class="fab-button" mat-fab color="primary" matTooltip="Adicionar novo operador" (click)="newItem()">
+        <mat-icon>add</mat-icon>
+    </button>

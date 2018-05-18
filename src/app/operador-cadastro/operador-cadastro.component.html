@@ -1,0 +1,44 @@
+<form [formGroup]="form" novalidate>
+  <h2 mat-dialog-title class="dialog-title">Operador</h2>
+  <mat-dialog-content class="dialog-container">
+
+    <mat-form-field>
+      <input matInput placeholder="Nome" name="name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="E-mail" type="email" name="email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Senha" formControlName="password" [type]="hide ? 'text':'password' ">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+
+    <div class="flex-row">
+      <div class="flex-child">
+        <mat-form-field>
+          <mat-select placeholder="Tipo" name="type" formControlName="type">
+            <mat-option value="Colaborador">Colaborador</mat-option>
+            <mat-option value="Cliente">Cliente</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex-child">
+        <mat-form-field>
+          <mat-select placeholder="Cliente" formControlName="clientId">
+            <mat-option *ngFor="let client of clients$ | async" [value]="client.id">
+              {{ client.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close class="dialog-btn">Cancelar</button>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid" class="dialog-btn">Salvar</button>
+  </mat-dialog-actions>
+</form>

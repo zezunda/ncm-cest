@@ -1,0 +1,47 @@
+<form [formGroup]="form" novalidate>
+  <h2 mat-dialog-title class="dialog-title">Indicador Padrão</h2>
+  <mat-dialog-content class="dialog-container">
+    <div class="indicadores-container">
+      <mat-form-field class="width-full">
+        <input matInput placeholder="CEST" name="cest" formControlName="cest">
+      </mat-form-field>
+
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="NCM" name="ncm" formControlName="ncm">
+      </mat-form-field>
+
+      <mat-form-field class="width-full">
+        <mat-select placeholder="Grupo" name="groupCd" formControlName="groupCd">
+          <mat-option *ngFor="let item of groups$ | async" [value]="item.groupCd">{{item.groupCd}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="indicadores-container">
+      <mat-form-field class="width-full">
+        <input matInput placeholder="CST" name="cst" formControlName="cst">
+      </mat-form-field>
+
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="PIS" name="pis" formControlName="pis">
+      </mat-form-field>
+
+      <mat-form-field class="width-full">
+        <input matInput placeholder="COFINS" name="cofins" formControlName="cofins">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <input matInput placeholder="Anexo" name="annex" formControlName="annex">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Descrição" name="description" formControlName="description"></textarea>
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close class="dialog-btn">Cancelar</button>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid" class="dialog-btn">Salvar</button>
+  </mat-dialog-actions>
+</form>

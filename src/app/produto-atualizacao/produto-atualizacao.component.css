@@ -1,0 +1,60 @@
+.atualizao-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.atualizao-list-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+    width: 30%;
+}
+
+.atualizao-formulario-container {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.atualizao-formulario {
+    flex-grow: 1;
+    overflow: auto;
+    margin-top: auto;
+}
+
+.atualizao-action-container {
+    display: flex;
+    margin-bottom: 1px;
+}
+
+.toggle-salvar {
+    margin-right: 20px;
+    margin-top: 7px;
+}
+
+.action-cancel {
+    margin-left: 10px;
+}
+
+.atualizacao-list {
+    width: 100%;
+    flex-grow: 1;
+    margin-top: auto;
+}
+
+.atualizacao-paginator {
+    width: 100%;
+    margin-bottom: auto;
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mat-cell {
+    cursor: pointer;
+}

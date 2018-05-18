@@ -1,0 +1,9 @@
+<h2 mat-dialog-title class="dialog-title">Produto</h2>
+<mat-dialog-content class="dialog-container">
+  <app-produto-formulario [setProduct]="selectedProduct"></app-produto-formulario>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="dialog-btn" [mat-dialog-close]="false">Cancelar</button>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button color="primary" class="dialog-btn" (click)="saveItem()" [mat-dialog-close]="true" [disabled]="!productForm.form.valid">Salvar</button>
+</mat-dialog-actions>

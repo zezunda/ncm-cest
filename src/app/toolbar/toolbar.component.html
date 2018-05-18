@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <span class="brand tb-item">NCM/CST</span>
+  <button mat-button  [routerLink]="['./home']" routerLinkActive="active" class="tb-item">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+  <button mat-button [routerLink]="['./clientes']" routerLinkActive="active" class="tb-item">
+    <mat-icon>store</mat-icon>
+    <span>Clientes</span>
+  </button>
+  <button mat-button [routerLink]="['./operadores']" routerLinkActive="active" class="tb-item">
+    <mat-icon>supervisor_account</mat-icon>
+    <span>Operadores</span>
+  </button>
+  <button mat-button [routerLink]="['./produtos']" routerLinkActive="active" class="tb-item">
+    <mat-icon>shopping_cart</mat-icon>
+    <span>Produtos</span>
+  </button>
+  <button mat-button [routerLink]="['./indicadores-padroes']" routerLinkActive="active" class="tb-item">
+    <mat-icon>list</mat-icon>
+    <span>Indicadores padrões</span>
+  </button>
+  <span class="spacer"></span>
+  <button mat-icon-button>
+    <mat-icon aria-label="Lembretes">notifications_none</mat-icon>
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu" class="tb-item">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openDialog()" disabled>
+      <mat-icon>account_circle</mat-icon>
+      Minha Conta</button>
+    <button mat-menu-item [routerLink]="['./configuracoes']" routerLinkActive="active" disabled>
+      <mat-icon>tune</mat-icon>
+      Configurações</button>
+    <button mat-menu-item [routerLink]="['./ajuda']" routerLinkActive="active" disabled>
+      <mat-icon>help</mat-icon>
+      Ajuda</button>
+    <button mat-menu-item (click)="logOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      Sair</button>
+  </mat-menu>
+</mat-toolbar>

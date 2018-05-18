@@ -1,0 +1,9 @@
+.center {
+    text-align: center;
+}
+
+mat-list {
+    flex-grow: 1;
+    max-height: 80%;
+    overflow: auto;
+}

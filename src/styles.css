@@ -1,0 +1,182 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    display: block;
+    margin: 0px;
+    background-color: #fafafa;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.place-holder {
+    margin-top: 15px;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-child {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+/* LIST OF CARDS */
+
+.component-header {
+    margin-left: 20px;
+}
+
+.component-header-title {
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-h2, .mat-caption, small {
+    color: #707070;
+}
+
+.card-body {
+    margin: 10px;
+    padding-top: 0px !important;
+}
+
+.card-menu {
+    position: absolute;
+    right: 0px;
+}
+
+.card-header {
+    padding-top: 24px;
+}
+
+.card-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.card-body {
+    width: 300px;
+}
+
+.status-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: rgba(0, 0, 0, 0.288);
+}
+
+.spinner-container {
+    display: flex;
+    align-items: center;
+    min-height: 24em;
+    justify-content: center;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 30%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    z-index: 1000;
+}
+
+.card-icon {
+    font-size: 40px;
+}
+
+.disabled {
+    color: gray !important;
+    text-decoration: line-through !important;
+}
+
+.line-through {}
+
+.fab-button {
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed !important;
+}
+
+.mat-menu-item {
+    font-size: 13px !important;
+}
+
+.dialog-container {
+    display: -webkit-flex;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.dialog-container>* {
+    width: 100%;
+}
+
+.dialog-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dialog-btn {
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: rgb(243, 243, 243);
+}
+
+.highlight>mat-cell {
+    font-weight: 500;
+}
+
+.missingBarCode>mat-cell {
+    color: red;
+}
+
+.missingCest>mat-cell {
+    color: orange;
+}
+
+.classified>mat-cell {
+    color: green;
+}
+
+.spinner-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

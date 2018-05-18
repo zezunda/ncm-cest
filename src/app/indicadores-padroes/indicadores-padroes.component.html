@@ -1,0 +1,60 @@
+<div class="table-container">
+  <div class="example-container mat-elevation-z8">
+    <div class="spinner-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput placeholder="Pesquisar" (keydown)="searchKeyDown($event)">
+        <mat-icon matSuffix class="pointer" (click)="ngOnInit()">search</mat-icon>
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="cest" matSortDisableClear matSortDirection="asc">
+      <ng-container matColumnDef="cest">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">CEST</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.cest }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ncm">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">NCM</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.ncm }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="groupCd">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Grupo</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.groupCd }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cst">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">CST</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.cst }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="pis">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">PIS</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.pis }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cofins">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">COFINS</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.cofins }}</mat-cell>
+      </ng-container>
+      <!--
+        
+        <ng-container matColumnDef="annex">
+          <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Anexo</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.annex }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true">Descrição</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+        </ng-container>
+        
+      -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelectedChanged(row)" (dblclick)="editItem(selected)"
+        [ngClass]="getStyle(row)"></mat-row>
+    </mat-table>
+    <mat-paginator class="atualizacao-paginator" [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+      [showFirstLastButtons]="true">
+    </mat-paginator>
+  </div>
+</div>
+<button class="fab-button" mat-fab color="primary" matTooltip="Adicionar novo indicador" (click)="newItem()">
+  <mat-icon>add</mat-icon>
+</button>

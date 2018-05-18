@@ -1,0 +1,87 @@
+<h2 mat-dialog-title class="dialog-title">Aplicação em massa de indicadores</h2>
+<mat-dialog-content class="dialog-container">
+
+  <form [formGroup]="form" novalidate>
+    <div class="indicadores-container">
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="NCM" name="ncm" formControlName="ncm" (input)="onNCmChanged(form.controls['ncm'].value)">
+      </mat-form-field>
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="CEST" name="cest" formControlName="cest">
+      </mat-form-field>
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="Grupo" name="groupCd" formControlName="groupCd" type="number">
+      </mat-form-field>
+    </div>
+
+    <div class="indicadores-container">
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="CST" name="cst" formControlName="cst">
+      </mat-form-field>
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="PIS" name="pis" formControlName="pis">
+      </mat-form-field>
+      <mat-form-field class="indicadores">
+        <input matInput placeholder="COFINS" name="cofins" formControlName="cofins">
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="indicadores-container">
+    <div class="indicadores">
+      <h4 class="mat-h4">Lista de produtos selecionados:</h4>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Produtos
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let item of data">{{ item.name }}</mat-list-item>
+          </mat-list>
+        </div>
+      </mat-expansion-panel>
+      <h4 class="mat-h4">Opções para indicadores de tributação:</h4>
+      <mat-accordion>
+        <mat-expansion-panel #cestExpansion>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Local
+            </mat-panel-title>
+            <mat-panel-description>
+              CEST no próprio banco de dados
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="searcher-container">
+            <div class="searcher-item searcher-options-container">
+              <div class="indicadores-container">
+                <mat-form-field class="indicadores">
+                  <input matInput placeholder="NCM" [(ngModel)]="cestTerm">
+                  <mat-icon class="pointer" matTooltip="Encurtar termo" matSuffix (click)="shortTerm()">remove</mat-icon>
+                  <mat-icon class="pointer" matTooltip="Pesquisar termo" matSuffix (click)="searchByNcm(cestTerm)">search</mat-icon>
+                </mat-form-field>
+                <mat-form-field class="indicadores">
+                  <mat-select #cestSelect placeholder="Opções" [(ngModel)]="cestSelected" (change)="onCestSelectedChanged()">
+                    <mat-option *ngFor="let item of cestOptions$ | async" [value]="item">
+                      {{ item.cest }} ({{ item.ncm }})
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="searcher-description">
+                <p>{{cestSelected.description}}</p>
+                <small>{{cestSelected.annex}}</small>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close class="dialog-btn">Cancelar</button>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid" class="dialog-btn">Aplicar</button>
+</mat-dialog-actions>
